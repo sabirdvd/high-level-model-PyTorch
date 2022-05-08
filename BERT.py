@@ -9,6 +9,12 @@ import torch.nn.functional as F
 import torch.utils.data as Data
 
 
+def get_attn_pad_mask(seq_q, seq_k):
+    batch_size, seq_len = seq_q.size()
+    # eq(zero) is PAD token
+    pad_attn_mask = seq_q.data.eq(0).unsqueeze(1)  # [batch_size, 1, seq_len]
+    return pad_attn_mask.expand(batch_size, seq_len, seq_len)  # [batch_size, seq_len, seq_len]
+
 class Embedding(nn.Module):
     def __init__(self):
         super(Embedding, self).__init__()
