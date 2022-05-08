@@ -15,12 +15,13 @@ def get_attn_pad_mask(seq_q, seq_k):
     pad_attn_mask = seq_q.data.eq(0).unsqueeze(1)  # [batch_size, 1, seq_len]
     return pad_attn_mask.expand(batch_size, seq_len, seq_len)  # [batch_size, seq_len, seq_len]
 
+
 def gelu(x):
     """
-    Paper Section 3.4, last paragraph notice that BERT used the GELU instead of RELU
+     Paper Section 3.4, last paragraph notice that BERT used the GELU instead of RELU
+    "Implementation of the gelu activation function by Hugging Face"
     """
-    return x * 0.5 * (1.0 + torch.erf(x / math.sqrt(2.0)))
- 
+    return x * 0.5 * (1.0 + torch.erf(x / math.sqrt(2.0))) 
 
 
 class Embedding(nn.Module):
