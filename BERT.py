@@ -1,3 +1,6 @@
+
+# inspired by this code https://github.com/dhlee347/pytorchic-bert/blob/master/models.py
+
 import re
 import math
 import torch
